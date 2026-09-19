@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: build, test, lint, format
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: build (debug)
+        run: cargo build
+
+      - name: build (release)
+        run: cargo build --release
+
+      - name: test
+        run: cargo test
+
+      - name: clippy
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: format
+        run: cargo fmt --check
