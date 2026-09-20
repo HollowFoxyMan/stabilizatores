@@ -89,13 +89,13 @@ impl Endpoint {
         Some(max.saturating_sub(min))
     }
 
-    /// One-character-per-probe sparkline: RTT mapped to eight brightness
+    /// One-character-per-probe sparkline: RTT mapped to seven brightness
     /// levels, lost probes as spaces. The scale follows the window maximum
-    /// (never smaller than 50 ms for a meaningful early graph).
+    /// (never smaller than 50 ms for a meaningful early graph). U+2587 is
+    /// avoided because several console fonts render it as a box artifact.
     pub fn sparkline(&self) -> String {
-        const LEVELS: [char; 8] = [
-            '\u{2581}', '\u{2582}', '\u{2583}', '\u{2584}', '\u{2585}', '\u{2586}', '\u{2587}',
-            '\u{2588}',
+        const LEVELS: [char; 7] = [
+            '\u{2581}', '\u{2582}', '\u{2583}', '\u{2584}', '\u{2585}', '\u{2586}', '\u{2588}',
         ];
         let max = self
             .history
@@ -110,7 +110,7 @@ impl Endpoint {
             .map(|entry| match entry {
                 None => ' ',
                 Some(rtt) => {
-                    let index = ((*rtt as usize) * 7 / max as usize).min(7);
+                    let index = ((*rtt as usize) * 6 / max as usize).min(6);
                     LEVELS[index]
                 }
             })
@@ -309,7 +309,7 @@ mod tests {
     }
 
     #[test]
-    fn sparkline_has_eight_levels_and_spaces_for_loss() {
+    fn sparkline_has_seven_levels_and_spaces_for_loss() {
         let mut endpoint = Endpoint::default();
         endpoint.record(Some(Sample {
             rtt_ms: 1,

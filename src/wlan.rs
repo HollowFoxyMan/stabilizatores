@@ -217,12 +217,10 @@ fn utf16_trim(text: &[u16]) -> String {
         .to_string()
 }
 
-/// Renders the signal strength as a small bar: 4 levels of solid blocks.
+/// Renders the signal strength as a plain percentage. Block glyphs are a
+/// font lottery in consoles, so the strength is shown without decoration.
 pub fn signal_bar(quality: u32) -> String {
-    const LEVELS: [char; 4] = ['\u{2581}', '\u{2583}', '\u{2585}', '\u{2587}'];
-    let level = quality.saturating_mul(4) / 100;
-    let bar = LEVELS[level.min(3) as usize];
-    format!("{bar} {quality:3}%")
+    format!("{quality:3}%")
 }
 
 /// Renders a link rate in kbps as a compact human string.
