@@ -124,7 +124,7 @@ prompt.
 Console menu (`q` exits and keeps tweaks, `x` reverts everything and exits):
 
 ```
-  STABILIZATORES  v0.1.0
+  STABILIZATORES  v0.3.0
   -------------------------------------------------
   status      PROTECTED
   interfaces  3 physical, 2 active
@@ -230,7 +230,8 @@ src/
   win.rs         OS wrappers (console, elevation, autostart)
 ```
 
-See `docs/ARCHITECTURE.md` for design details.
+See `docs/ARCHITECTURE.md` for design details and
+[`CHANGELOG.md`](CHANGELOG.md) for release history.
 
 ## Notes & limitations
 

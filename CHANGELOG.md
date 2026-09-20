@@ -2,6 +2,15 @@
 
 All notable changes to `stabilizatores` are documented in this file.
 
+## [0.3.0] - 2026-09-20
+
+### Changed
+
+- Latency sparkline uses seven brightness levels instead of eight: U+2587 is
+  avoided because several console fonts render it as a box artifact.
+- Wi-Fi signal strength is shown as a plain percentage instead of a block
+  glyph bar, for the same font-lottery reason.
+
 ## [0.2.0] - 2026-09-19
 
 ### Added

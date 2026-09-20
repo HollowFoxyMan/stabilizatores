@@ -1,6 +1,6 @@
 [package]
 name = "stabilizatores"
-version = "0.1.0"
+version = "0.3.0"
 edition = "2021"
 description = "Optimizes the Windows network stack: TCP parameter tuning, low-latency DNS, network throttling removal and MTU normalization"
 license = "GPL-3.0"
